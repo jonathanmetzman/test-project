@@ -6,7 +6,7 @@ on:
     - master
 
 jobs:
-  volumes:
+  - volumes:
     share:/share
   build:
     name: OSS-Fuzz action
