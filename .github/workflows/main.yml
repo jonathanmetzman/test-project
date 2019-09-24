@@ -13,6 +13,8 @@ jobs:
     - uses: actions/checkout@master
     - name: "oss-fuzz"
       uses: ./.github/oss-fuzz-action
+      volumes:
+        share:/share
     - name: create
       run: mkdir -p crashes && echo "hi" > crashes/1 && echo "bye" > crashes/2 && ls && echo $GITHUB_WORKSPACE && echo $PWD
     - name: previous
