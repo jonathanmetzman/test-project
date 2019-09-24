@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: "oss-fuzz"
-      uses: ./.github/oss-fuzz-action
-    - name: create
+    # - name: "oss-fuzz"
+    #   uses: ./.github/oss-fuzz-action
+    - name: ls
       run: mkdir -p crashes && echo "hi" > crashes/1 && echo "bye" > crashes/2 && ls && echo $GITHUB_WORKSPACE && echo $PWD
     - name: previous
       run: exit 1
@@ -21,7 +21,7 @@ jobs:
       if: failure()
       with:
         name: crashes
-        path: crashes
+        path: ./oss-fuzz/artifacts
 
 
 #jobs:
