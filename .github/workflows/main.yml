@@ -6,8 +6,6 @@ on:
     - master
 
 jobs:
-  - volumes:
-    share:/share
   build:
     name: OSS-Fuzz action
     runs-on: ubuntu-latest
