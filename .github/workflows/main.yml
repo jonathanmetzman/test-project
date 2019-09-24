@@ -1,0 +1,39 @@
+name: OSS-Fuzz action
+
+on:
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  build:
+    name: OSS-Fuzz action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: "oss-fuzz"
+      uses: ./.github/oss-fuzz-action
+    - name: create
+      run: mkdir -p crashes && echo "hi" > crashes/1 && echo "bye" > crashes/2 && ls && echo $GITHUB_WORKSPACE && echo $PWD
+    - name: previous
+      run: exit 1
+    - uses: actions/upload-artifact@master
+      if: failure()
+      with:
+        name: crashes
+        path: crashes
+
+
+#jobs:
+#  build:
+#
+#    runs-on: ubuntu-latest
+#    
+#    steps:
+#    - uses: actions/checkout@v1
+#    - name: Run a one-line script
+#      run: echo Hello, world!
+#    - name: Run a multi-line script
+#      run: |
+#        echo Add other actions to build,
+#        echo test, and deploy your project.
