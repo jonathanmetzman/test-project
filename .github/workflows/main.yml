@@ -11,12 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    # - name: "oss-fuzz"
-    #   uses: ./.github/oss-fuzz-action
-    - name: ls
-      run: mkdir -p crashes && echo "hi" > crashes/1 && echo "bye" > crashes/2 && ls && echo $GITHUB_WORKSPACE && echo $PWD
-    - name: previous
-      run: exit 1
+    - name: "oss-fuzz"
+      uses: ./.github/oss-fuzz-action
     - uses: actions/upload-artifact@master
       if: failure()
       with:
