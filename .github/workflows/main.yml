@@ -13,15 +13,11 @@ jobs:
     - uses: actions/checkout@master
     - name: "oss-fuzz"
       uses: ./.github/oss-fuzz-action
-    - name: create
-      run: mkdir -p crashes && echo "hi" > crashes/1 && echo "bye" > crashes/2 && ls && echo $GITHUB_WORKSPACE && echo $PWD
-    - name: previous
-      run: exit 1
     - uses: actions/upload-artifact@master
       if: failure()
       with:
         name: crashes
-        path: crashes
+        path: ./oss-fuzz/artifacts
 
 
 #jobs:
