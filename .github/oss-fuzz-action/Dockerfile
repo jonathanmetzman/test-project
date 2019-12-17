@@ -1,9 +1,6 @@
 # This uses three docker images. Bad! We only want one (or two if really needed)
 # at some point.
 FROM debian:9.5-slim
-RUN echo "GITHUB STUFF"
-RUN echo $GITHUB_SHA
-RUN echo $GITHUB_REF
 # TODO: don't run docker in docker :-)
 RUN apt-get update && apt-get install -y git \
     apt-transport-https \
