@@ -20,8 +20,6 @@ RUN add-apt-repository \
 
 RUN apt-get update
 RUN apt-get install docker-ce docker-ce-cli containerd.io -y
-# This repo will be changed.
-RUN git clone https://github.com/jonathanmetzman/oss-fuzz-cifuzz.git --depth 1 /oss-fuzz
 ADD oss-fuzz.sh /oss-fuzz.sh
 RUN chmod +x /oss-fuzz.sh
 ENTRYPOINT ["/oss-fuzz.sh"]
